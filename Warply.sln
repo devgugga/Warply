@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D1D1A830-4F92-46FC-A31C-41D7C39D0F72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warply.Api", "src\Warply.Api\Warply.Api.csproj", "{1F892EB8-66FA-4805-B866-CF0B177CB584}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warply.Application", "src\Warply.Application\Warply.Application.csproj", "{4ADEAFE7-CFCA-4F24-B240-887AD08A33C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warply.Communication", "src\Warply.Communication\Warply.Communication.csproj", "{DB6EB189-E51A-48C9-AAA9-8FA57C5C8E58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warply.Domain", "src\Warply.Domain\Warply.Domain.csproj", "{7D3F5C98-131A-4D1D-AE0F-D31A859F43A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warply.Exception", "src\Warply.Exception\Warply.Exception.csproj", "{1B875493-9A7F-4889-87C3-407207360FB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warply.Infrastructure", "src\Warply.Infrastructure\Warply.Infrastructure.csproj", "{83AE162A-A141-441A-8BE9-E98BD2E45844}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1F892EB8-66FA-4805-B866-CF0B177CB584} = {D1D1A830-4F92-46FC-A31C-41D7C39D0F72}
+		{4ADEAFE7-CFCA-4F24-B240-887AD08A33C1} = {D1D1A830-4F92-46FC-A31C-41D7C39D0F72}
+		{DB6EB189-E51A-48C9-AAA9-8FA57C5C8E58} = {D1D1A830-4F92-46FC-A31C-41D7C39D0F72}
+		{7D3F5C98-131A-4D1D-AE0F-D31A859F43A8} = {D1D1A830-4F92-46FC-A31C-41D7C39D0F72}
+		{1B875493-9A7F-4889-87C3-407207360FB7} = {D1D1A830-4F92-46FC-A31C-41D7C39D0F72}
+		{83AE162A-A141-441A-8BE9-E98BD2E45844} = {D1D1A830-4F92-46FC-A31C-41D7C39D0F72}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F892EB8-66FA-4805-B866-CF0B177CB584}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F892EB8-66FA-4805-B866-CF0B177CB584}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F892EB8-66FA-4805-B866-CF0B177CB584}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F892EB8-66FA-4805-B866-CF0B177CB584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ADEAFE7-CFCA-4F24-B240-887AD08A33C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ADEAFE7-CFCA-4F24-B240-887AD08A33C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ADEAFE7-CFCA-4F24-B240-887AD08A33C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ADEAFE7-CFCA-4F24-B240-887AD08A33C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB6EB189-E51A-48C9-AAA9-8FA57C5C8E58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB6EB189-E51A-48C9-AAA9-8FA57C5C8E58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB6EB189-E51A-48C9-AAA9-8FA57C5C8E58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB6EB189-E51A-48C9-AAA9-8FA57C5C8E58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D3F5C98-131A-4D1D-AE0F-D31A859F43A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D3F5C98-131A-4D1D-AE0F-D31A859F43A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D3F5C98-131A-4D1D-AE0F-D31A859F43A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D3F5C98-131A-4D1D-AE0F-D31A859F43A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B875493-9A7F-4889-87C3-407207360FB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B875493-9A7F-4889-87C3-407207360FB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B875493-9A7F-4889-87C3-407207360FB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B875493-9A7F-4889-87C3-407207360FB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83AE162A-A141-441A-8BE9-E98BD2E45844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83AE162A-A141-441A-8BE9-E98BD2E45844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83AE162A-A141-441A-8BE9-E98BD2E45844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83AE162A-A141-441A-8BE9-E98BD2E45844}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
