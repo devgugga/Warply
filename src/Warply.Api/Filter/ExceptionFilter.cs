@@ -22,6 +22,13 @@ public class ExceptionFilter : IExceptionFilter
             context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
             context.Result = new BadRequestObjectResult(errorResponse);
         }
+        else if (context.Exception is EmailAlreadyExistsException emailException)
+        {
+            var errorResponse = new ResponseErrorJson($"Email {emailException.Email} already exists.");
+
+            context.HttpContext.Response.StatusCode = StatusCodes.Status409Conflict;
+            context.Result = new BadRequestObjectResult(errorResponse);
+        }
         else
         {
             var errorResponse = new ResponseErrorJson(context.Exception.Message);

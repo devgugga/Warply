@@ -6,20 +6,28 @@ using Warply.Domain.Entities;
 using Warply.Domain.Enum;
 using Warply.Domain.Repositories.Users;
 using Warply.Exception.BaseExceptions;
+using Warply.Infrastructure.Security;
 
 namespace Warply.Application.UseCases.Register.Users;
 
-internal class RegisterUserUseCase(IUsersRepository repository, IUnityOfWork unityOfWork) : IRegisterUserUseCase
+internal class RegisterUserUseCase(
+    IUsersRepository repository,
+    IUnityOfWork unityOfWork,
+    IPasswordHasher passwordHasher) : IRegisterUserUseCase
 {
     public async Task<ResponseRegisterUserJson> Execute(RequestRegisterUserJson request)
     {
-        Validate(request);
+        ValidateRequest(request);
+
+        await ValidateEmail(request.Email);
+
+        var newPasswordHash = passwordHasher.HashPassword(request.Password);
 
         var entity = new User
         {
             Name = request.Name,
             Email = request.Email,
-            PasswordHash = request.Password,
+            PasswordHash = newPasswordHash,
             PlanType = (PlanType)request.PlanType
         };
 
@@ -38,7 +46,7 @@ internal class RegisterUserUseCase(IUsersRepository repository, IUnityOfWork uni
         return response;
     }
 
-    private static void Validate(RequestRegisterUserJson request)
+    private static void ValidateRequest(RequestRegisterUserJson request)
     {
         var validator = new RegisterUserValidator();
 
@@ -49,5 +57,12 @@ internal class RegisterUserUseCase(IUsersRepository repository, IUnityOfWork uni
         var errorMessages = result.Errors.Select(x => x.ErrorMessage).ToList();
 
         throw new ErrorOnValidationException(errorMessages);
+    }
+
+    private async Task ValidateEmail(string email)
+    {
+        var existingUser = await repository.GetByEmailAsync(email);
+
+        if (existingUser != null) throw new EmailAlreadyExistsException(email);
     }
 }
