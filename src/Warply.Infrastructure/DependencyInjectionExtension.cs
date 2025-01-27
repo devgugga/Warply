@@ -5,6 +5,7 @@ using Warply.Domain;
 using Warply.Domain.Repositories.Users;
 using Warply.Infrastructure.DataAccess;
 using Warply.Infrastructure.DataAccess.Repositories;
+using Warply.Infrastructure.Security;
 
 namespace Warply.Infrastructure;
 
@@ -20,6 +21,7 @@ public static class DependencyInjectionExtension
     {
         services.AddScoped<IUsersRepository, UsersRepository>();
         services.AddScoped<IUnityOfWork, UnitOfWork>();
+        services.AddScoped<IPasswordHasher, Argon2IdPasswordHasher>();
     }
 
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
