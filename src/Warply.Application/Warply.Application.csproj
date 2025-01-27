@@ -6,4 +6,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\Warply.Communication\Warply.Communication.csproj"/>
+        <ProjectReference Include="..\Warply.Domain\Warply.Domain.csproj"/>
+        <ProjectReference Include="..\Warply.Exception\Warply.Exception.csproj"/>
+    </ItemGroup>
+
 </Project>
