@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Warply.Infrastructure.DataAccess;
@@ -11,9 +12,11 @@ using Warply.Infrastructure.DataAccess;
 namespace Warply.Infrastructure.Migrations
 {
     [DbContext(typeof(WarplyDbContext))]
-    partial class WarplyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250127151233_BaseEntity")]
+    partial class BaseEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

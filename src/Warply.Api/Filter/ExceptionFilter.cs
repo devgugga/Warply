@@ -15,26 +15,32 @@ public class ExceptionFilter : IExceptionFilter
 
     private static void HandleProjectException(ExceptionContext context)
     {
-        if (context.Exception is ErrorOnValidationException exception)
+        switch (context.Exception)
         {
-            var errorResponse = new ResponseErrorJson(exception.Errors);
+            case ErrorOnValidationException exception:
+            {
+                var errorResponse = new ResponseErrorJson(exception.Errors);
 
-            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            context.Result = new BadRequestObjectResult(errorResponse);
-        }
-        else if (context.Exception is EmailAlreadyExistsException emailException)
-        {
-            var errorResponse = new ResponseErrorJson($"Email {emailException.Email} already exists.");
+                context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+                context.Result = new BadRequestObjectResult(errorResponse);
+                break;
+            }
+            case EmailAlreadyExistsException emailException:
+            {
+                var errorResponse = new ResponseErrorJson($"Email {emailException.Email} already exists.");
 
-            context.HttpContext.Response.StatusCode = StatusCodes.Status409Conflict;
-            context.Result = new BadRequestObjectResult(errorResponse);
-        }
-        else
-        {
-            var errorResponse = new ResponseErrorJson(context.Exception.Message);
+                context.HttpContext.Response.StatusCode = StatusCodes.Status409Conflict;
+                context.Result = new ConflictObjectResult(errorResponse);
+                break;
+            }
+            default:
+            {
+                var errorResponse = new ResponseErrorJson(context.Exception.Message);
 
-            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            context.Result = new BadRequestObjectResult(errorResponse);
+                context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+                context.Result = new BadRequestObjectResult(errorResponse);
+                break;
+            }
         }
     }
 

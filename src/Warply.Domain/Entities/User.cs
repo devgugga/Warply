@@ -2,7 +2,7 @@ using Warply.Domain.Enum;
 
 namespace Warply.Domain.Entities;
 
-public class User
+public class User : BaseEntity
 {
     public Guid Id { get; set; }
     public List<Url> Urls { get; set; }
@@ -11,6 +11,4 @@ public class User
     public string PasswordHash { get; set; }
     public bool StayLoggedIn { get; set; }
     public PlanType PlanType { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
 }
