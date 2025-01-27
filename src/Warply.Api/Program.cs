@@ -1,3 +1,5 @@
+using Warply.Api.Filter;
+using Warply.Application;
 using Warply.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,10 @@ builder.Services.AddSwaggerGen();
 
 // Add Dependencies
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
+
+// Add Filter
+builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 
 var app = builder.Build();
 

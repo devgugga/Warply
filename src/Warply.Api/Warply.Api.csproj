@@ -15,10 +15,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Controllers\"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\Warply.Application\Warply.Application.csproj"/>
         <ProjectReference Include="..\Warply.Communication\Warply.Communication.csproj"/>
         <ProjectReference Include="..\Warply.Exception\Warply.Exception.csproj"/>
