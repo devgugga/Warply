@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Warply.Application.UseCases.Redirect.Url;
 using Warply.Application.UseCases.Register.Auth;
 using Warply.Application.UseCases.Register.Url;
 using Warply.Application.UseCases.Register.Users;
@@ -12,6 +13,7 @@ public static class DependencyInjectionExtension
     {
         service.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
         service.AddScoped<IRegisterUrlUseCase, RegisterUrlUseCase>();
+        service.AddScoped<IRedirectUseCase, RedirectUseCase>();
         service.AddScoped<IJwtTokenUseCase, JwtTokenUseCase>();
     }
 }

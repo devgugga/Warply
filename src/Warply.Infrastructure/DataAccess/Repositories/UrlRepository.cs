@@ -13,6 +13,6 @@ internal class UrlRepository(WarplyDbContext context) : IUrlRepository
 
     public async Task<Url?> GetUrlByShortCode(string shortCode)
     {
-        return await context.Urls.AsNoTracking().FirstOrDefaultAsync(url => url.ShortCode == shortCode);
+        return await context.Urls.FirstOrDefaultAsync(url => url.ShortCode == shortCode);
     }
 }

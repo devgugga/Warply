@@ -21,6 +21,8 @@ builder.Services.AddApplication();
 // Add Filter
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 
+builder.Services.AddHttpClient();
+
 // Jwt Config
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
