@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Warply.Domain;
+using Warply.Domain.Repositories.Url;
 using Warply.Domain.Repositories.Users;
 using Warply.Infrastructure.DataAccess;
 using Warply.Infrastructure.DataAccess.Repositories;
@@ -21,6 +22,7 @@ public static class DependencyInjectionExtension
     private static void AddRepositories(IServiceCollection services)
     {
         services.AddScoped<IUsersRepository, UsersRepository>();
+        services.AddScoped<IUrlRepository, UrlRepository>();
         services.AddScoped<IUnityOfWork, UnitOfWork>();
     }
 

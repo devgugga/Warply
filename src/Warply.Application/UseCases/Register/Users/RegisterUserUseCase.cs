@@ -15,7 +15,7 @@ internal class RegisterUserUseCase(
     IUnityOfWork unityOfWork,
     IPasswordHasher passwordHasher) : IRegisterUserUseCase
 {
-    public async Task<ResponseRegisterUserJson> Execute(RequestRegisterUserJson request)
+    public async Task<ResponseRegisterUserJson> ExecuteAsync(RequestRegisterUserJson request)
     {
         ValidateRequest(request);
 

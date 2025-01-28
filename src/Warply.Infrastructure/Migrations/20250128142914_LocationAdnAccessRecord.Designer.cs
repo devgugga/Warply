@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Warply.Infrastructure.DataAccess;
@@ -12,9 +13,11 @@ using Warply.Infrastructure.DataAccess;
 namespace Warply.Infrastructure.Migrations
 {
     [DbContext(typeof(WarplyDbContext))]
-    partial class WarplyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250128142914_LocationAdnAccessRecord")]
+    partial class LocationAdnAccessRecord
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,17 +46,14 @@ namespace Warply.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("ShortedUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uuid");
 
                     b.PrimitiveCollection<List<string>>("UsersLocations")
+                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.HasKey("Id");
@@ -108,9 +108,7 @@ namespace Warply.Infrastructure.Migrations
                 {
                     b.HasOne("Warply.Domain.Entities.User", null)
                         .WithMany("Urls")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Warply.Domain.Entities.User", b =>

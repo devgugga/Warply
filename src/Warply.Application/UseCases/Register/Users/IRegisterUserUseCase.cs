@@ -5,5 +5,5 @@ namespace Warply.Application.UseCases.Users;
 
 public interface IRegisterUserUseCase
 {
-    Task<ResponseRegisterUserJson> Execute(RequestRegisterUserJson request);
+    Task<ResponseRegisterUserJson> ExecuteAsync(RequestRegisterUserJson request);
 }

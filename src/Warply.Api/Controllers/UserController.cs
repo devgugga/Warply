@@ -12,7 +12,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> Register([FromServices] IRegisterUserUseCase useCase,
         [FromBody] RequestRegisterUserJson request)
     {
-        var response = await useCase.Execute(request);
+        var response = await useCase.ExecuteAsync(request);
 
         return Created(string.Empty, response);
     }
