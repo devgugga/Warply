@@ -16,4 +16,9 @@ internal class UsersRepository(WarplyDbContext context) : IUsersRepository
         return await context.Users
             .FirstOrDefaultAsync(u => u.Email == email);
     }
+
+    public async Task<User?> GetByIdAsync(Guid userId)
+    {
+        return await context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+    }
 }

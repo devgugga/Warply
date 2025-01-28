@@ -14,6 +14,7 @@ public static class DependencyInjectionExtension
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         AddRepositories(services);
+        AddSecurity(services);
         AddDbContext(services, configuration);
     }
 
@@ -21,7 +22,12 @@ public static class DependencyInjectionExtension
     {
         services.AddScoped<IUsersRepository, UsersRepository>();
         services.AddScoped<IUnityOfWork, UnitOfWork>();
+    }
+
+    private static void AddSecurity(IServiceCollection services)
+    {
         services.AddScoped<IPasswordHasher, Argon2IdPasswordHasher>();
+        services.AddScoped<ITokenService, JwtTokenService>();
     }
 
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)

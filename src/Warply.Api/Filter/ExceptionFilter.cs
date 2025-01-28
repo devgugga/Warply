@@ -33,6 +33,22 @@ public class ExceptionFilter : IExceptionFilter
                 context.Result = new ConflictObjectResult(errorResponse);
                 break;
             }
+            case NotFoundException notFoundException:
+            {
+                var errorResponse = new ResponseErrorJson(notFoundException.Message);
+
+                context.HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
+                context.Result = new NotFoundObjectResult(errorResponse);
+                break;
+            }
+            case InvalidException invalidException:
+            {
+                var errorResponse = new ResponseErrorJson(invalidException.Message);
+
+                context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+                context.Result = new BadRequestObjectResult(errorResponse);
+                break;
+            }
             default:
             {
                 var errorResponse = new ResponseErrorJson(context.Exception.Message);

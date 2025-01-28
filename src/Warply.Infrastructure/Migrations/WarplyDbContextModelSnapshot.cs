@@ -76,6 +76,12 @@ namespace Warply.Infrastructure.Migrations
                     b.Property<int>("PlanType")
                         .HasColumnType("integer");
 
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("RefreshTokenExpiry")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<bool>("StayLoggedIn")
                         .HasColumnType("boolean");
 
