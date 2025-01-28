@@ -21,7 +21,15 @@ builder.Services.AddApplication();
 // Add Filter
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 
+// Add HttpClient
 builder.Services.AddHttpClient();
+
+// Add Env Support
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", false, true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true)
+    .AddEnvironmentVariables();
 
 // Jwt Config
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
