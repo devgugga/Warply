@@ -1,6 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using Konscious.Security.Cryptography;
+using Warply.Domain.Services.Security;
 
 namespace Warply.Infrastructure.Security;
 

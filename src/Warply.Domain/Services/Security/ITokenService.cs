@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using Warply.Domain.Entities;
 
-namespace Warply.Infrastructure.Security;
+namespace Warply.Domain.Services.Security;
 
 public interface ITokenService
 {

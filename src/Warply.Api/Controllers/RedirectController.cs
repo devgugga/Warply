@@ -12,8 +12,10 @@ public class RedirectController : ControllerBase
     {
         var ip = Request.Headers["X-Forwarded-For"].FirstOrDefault() ??
                  HttpContext.Connection.RemoteIpAddress?.ToString();
-        
-        var redirectUrl = await useCase.Redirect(shortCode, ip);
+
+        Console.WriteLine(ip);
+
+        var redirectUrl = await useCase.Redirect(shortCode);
 
         return new RedirectResult(redirectUrl.OriginalUrl);
     }

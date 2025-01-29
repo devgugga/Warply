@@ -2,14 +2,14 @@ using System.Net.Http.Json;
 using Warply.Communication.Response.Url;
 using Warply.Domain;
 using Warply.Domain.Repositories.Url;
-using Warply.Exception.BaseExceptions;
+using Warply.Exception.Exceptions;
 
 namespace Warply.Application.UseCases.Redirect.Url;
 
 internal class RedirectUseCase(IUrlRepository repository, IUnityOfWork unityOfWork, HttpClient httpClient)
     : IRedirectUseCase
 {
-    public async Task<ResponseRedirectUrlJson> Redirect(string shortCode, string ip)
+    public async Task<ResponseRedirectUrlJson> Redirect(string shortCode, string ip = "179.189.0.157")
     {
         var url = await VerifyShortCode(shortCode);
 

@@ -2,10 +2,9 @@ using System.Security.Claims;
 using Warply.Communication.Request.Auth;
 using Warply.Communication.Response.Auth;
 using Warply.Domain;
-using Warply.Domain.Entities;
 using Warply.Domain.Repositories.Users;
+using Warply.Domain.Services.Security;
 using Warply.Exception.Exceptions;
-using Warply.Infrastructure.Security;
 
 namespace Warply.Application.UseCases.Register.Auth;
 
@@ -89,7 +88,7 @@ internal class JwtTokenUseCase(
         throw new ErrorOnValidationException(errorMessages);
     }
 
-    private async Task<User> ValidatePassword(RequestUserLoginJson request)
+    private async Task<Domain.Entities.User> ValidatePassword(RequestUserLoginJson request)
     {
         var user = await usersRepository.GetByEmailAsync(request.Email);
         if (user == null || !passwordHasher.VerifyHashedPassword(user.PasswordHash, request.Password))
@@ -98,7 +97,7 @@ internal class JwtTokenUseCase(
         return user;
     }
 
-    private async Task<User> ValidateRefreshToken(RequestUserRefreshTokenJson request, Guid userId)
+    private async Task<Domain.Entities.User> ValidateRefreshToken(RequestUserRefreshTokenJson request, Guid userId)
     {
         var user = await usersRepository.GetByIdAsync(userId);
         if (user == null ||

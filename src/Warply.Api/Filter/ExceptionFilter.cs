@@ -36,7 +36,7 @@ public class ExceptionFilter : IExceptionFilter
             }
             case NotFoundException notFoundException:
             {
-                var errorResponse = new ResponseErrorJson(notFoundException.Message);
+                var errorResponse = new ResponseErrorJson(notFoundException.Errors);
 
                 context.HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
                 context.Result = new NotFoundObjectResult(errorResponse);
@@ -44,7 +44,7 @@ public class ExceptionFilter : IExceptionFilter
             }
             case UploadException uploadException:
             {
-                var errorResponse = new ResponseErrorJson(uploadException.Message);
+                var errorResponse = new ResponseErrorJson(uploadException.Errors);
 
                 context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
                 context.Result = new BadRequestObjectResult(errorResponse);
@@ -52,7 +52,7 @@ public class ExceptionFilter : IExceptionFilter
             }
             case InvalidException invalidException:
             {
-                var errorResponse = new ResponseErrorJson(invalidException.Message);
+                var errorResponse = new ResponseErrorJson(invalidException.Errors);
 
                 context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
                 context.Result = new BadRequestObjectResult(errorResponse);

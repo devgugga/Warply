@@ -6,13 +6,21 @@ using Warply.Exception.Exceptions;
 
 namespace Warply.Application.UseCases.Utils;
 
-internal class CloudflareClientUseCase(string accountId, string accessKey, string accessSecret) : ICloudflareClient
+public class R2Config
 {
-    public async Task UploadImage(Stream image, string imageName, string type)
+    public string AccountId { get; set; }
+    public string AccessKey { get; set; }
+    public string SecretAccessKey { get; set; }
+}
+
+internal class CloudflareClientUseCase(R2Config config) : ICloudflareClient
+{
+    public async Task UploadImage(Stream image,
+        string imageName, string type)
     {
-        var s3Client = new AmazonS3Client(accessKey, accessSecret, new AmazonS3Config
+        var s3Client = new AmazonS3Client(config.AccessKey, config.SecretAccessKey, new AmazonS3Config
         {
-            ServiceURL = $"https://{accountId}.r2.cloudflarestorage.com"
+            ServiceURL = $"https://{config.AccountId}.r2.cloudflarestorage.com"
         });
 
         var request = new PutObjectRequest

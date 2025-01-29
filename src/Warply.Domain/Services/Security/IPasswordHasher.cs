@@ -1,4 +1,4 @@
-namespace Warply.Infrastructure.Security;
+namespace Warply.Domain.Services.Security;
 
 public interface IPasswordHasher
 {

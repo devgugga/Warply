@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Warply.Domain.Entities;
+using Warply.Domain.Services.Security;
 
 namespace Warply.Infrastructure.Security;
 

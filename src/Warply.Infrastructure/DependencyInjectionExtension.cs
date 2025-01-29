@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Warply.Domain;
 using Warply.Domain.Repositories.Url;
 using Warply.Domain.Repositories.Users;
+using Warply.Domain.Services.Security;
 using Warply.Infrastructure.DataAccess;
 using Warply.Infrastructure.DataAccess.Repositories;
 using Warply.Infrastructure.Security;
@@ -28,7 +29,7 @@ public static class DependencyInjectionExtension
 
     private static void AddSecurity(IServiceCollection services)
     {
-        services.AddScoped<IPasswordHasher, Argon2IdPasswordHasher>();
+        services.AddTransient<IPasswordHasher, Argon2IdPasswordHasher>();
         services.AddScoped<ITokenService, JwtTokenService>();
     }
 

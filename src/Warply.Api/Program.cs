@@ -1,8 +1,10 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Warply.Api.Filter;
 using Warply.Application;
+using Warply.Application.UseCases.Utils;
 using Warply.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,10 @@ builder.Services.AddSwaggerGen();
 // Add Dependencies
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
+
+builder.Services.Configure<R2Config>(builder.Configuration.GetSection("R2"));
+builder.Services.AddSingleton(serviceProvider =>
+    serviceProvider.GetRequiredService<IOptions<R2Config>>().Value);
 
 // Add Filter
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));

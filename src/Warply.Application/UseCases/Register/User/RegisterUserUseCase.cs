@@ -1,22 +1,18 @@
-using Warply.Application.UseCases.Users;
 using Warply.Communication.Request.User;
 using Warply.Communication.Response.User;
 using Warply.Domain;
-using Warply.Domain.Entities;
 using Warply.Domain.Enum;
 using Warply.Domain.Repositories.Users;
-using Warply.Domain.Services.Utils;
+using Warply.Domain.Services.Security;
 using Warply.Exception.Exceptions;
-using Warply.Infrastructure.Security;
 
-namespace Warply.Application.UseCases.Register.Users;
+namespace Warply.Application.UseCases.Register.User;
 
 internal class RegisterUserUseCase(
     IUsersRepository repository,
     IUnityOfWork unityOfWork,
     IPasswordHasher passwordHasher,
-    ITokenService tokenService,
-    ICloudflareClient cloudflareClient) : IRegisterUserUseCase
+    ITokenService tokenService) : IRegisterUserUseCase
 {
     public async Task<ResponseRegisterUserJson> ExecuteAsync(RequestRegisterUserJson request)
     {
@@ -28,7 +24,7 @@ internal class RegisterUserUseCase(
 
         var nickName = await GenerateNickName();
 
-        var entity = new User
+        var entity = new Domain.Entities.User
         {
             Name = request.Name,
             NickName = nickName,
@@ -36,6 +32,8 @@ internal class RegisterUserUseCase(
             PasswordHash = newPasswordHash,
             PlanType = (PlanType)request.PlanType
         };
+
+        await repository.Add(entity);
 
         var tokens = new Dictionary<string, string>
         {

@@ -1,9 +1,9 @@
 using FluentValidation;
 using Warply.Communication.Request.User;
 
-namespace Warply.Application.UseCases.Register.Users;
+namespace Warply.Application.UseCases.Register.User;
 
-public class RegisterUserValidator : AbstractValidator<RequestRegisterUserJson>
+internal class RegisterUserValidator : AbstractValidator<RequestRegisterUserJson>
 {
     public RegisterUserValidator()
     {

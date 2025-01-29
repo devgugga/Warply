@@ -3,11 +3,11 @@ using Warply.Communication.Request.Auth;
 
 namespace Warply.Application.UseCases.Register.Auth;
 
-public abstract class TokenValidatorBase<T> : AbstractValidator<T>
+internal abstract class TokenValidatorBase<T> : AbstractValidator<T>
 {
 }
 
-public class JwtTokenValidator : TokenValidatorBase<RequestUserLoginJson>
+internal class JwtTokenValidator : TokenValidatorBase<RequestUserLoginJson>
 {
     public JwtTokenValidator()
     {
@@ -16,7 +16,7 @@ public class JwtTokenValidator : TokenValidatorBase<RequestUserLoginJson>
     }
 }
 
-public class RefreshTokenValidator : TokenValidatorBase<RequestUserRefreshTokenJson>
+internal class RefreshTokenValidator : TokenValidatorBase<RequestUserRefreshTokenJson>
 {
     public RefreshTokenValidator()
     {

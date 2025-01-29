@@ -3,7 +3,7 @@ using Warply.Communication.Request.Url;
 
 namespace Warply.Application.UseCases.Register.Url;
 
-public class RegisterUrlValidator : AbstractValidator<RequestRegisterUrlJson>
+internal class RegisterUrlValidator : AbstractValidator<RequestRegisterUrlJson>
 {
     public RegisterUrlValidator()
     {
