@@ -2,7 +2,7 @@ using Warply.Communication.Request.Url;
 using Warply.Communication.Response.Url;
 using Warply.Domain;
 using Warply.Domain.Repositories.Url;
-using Warply.Exception.BaseExceptions;
+using Warply.Exception.Exceptions;
 
 namespace Warply.Application.UseCases.Register.Url;
 

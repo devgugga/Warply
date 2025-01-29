@@ -1,4 +1,6 @@
-namespace Warply.Exception.BaseExceptions;
+using Warply.Exception.BaseExceptions;
+
+namespace Warply.Exception.Exceptions;
 
 public class InvalidException(string error) : WarplyException
 {

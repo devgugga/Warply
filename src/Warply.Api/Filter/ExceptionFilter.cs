@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Warply.Communication.Response.Error;
 using Warply.Exception.BaseExceptions;
+using Warply.Exception.Exceptions;
 
 namespace Warply.Api.Filter;
 
@@ -39,6 +40,14 @@ public class ExceptionFilter : IExceptionFilter
 
                 context.HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
                 context.Result = new NotFoundObjectResult(errorResponse);
+                break;
+            }
+            case UploadException uploadException:
+            {
+                var errorResponse = new ResponseErrorJson(uploadException.Message);
+
+                context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+                context.Result = new BadRequestObjectResult(errorResponse);
                 break;
             }
             case InvalidException invalidException:

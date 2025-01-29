@@ -4,6 +4,8 @@ using Warply.Application.UseCases.Register.Auth;
 using Warply.Application.UseCases.Register.Url;
 using Warply.Application.UseCases.Register.Users;
 using Warply.Application.UseCases.Users;
+using Warply.Application.UseCases.Utils;
+using Warply.Domain.Services.Utils;
 
 namespace Warply.Application;
 
@@ -15,5 +17,6 @@ public static class DependencyInjectionExtension
         service.AddScoped<IRegisterUrlUseCase, RegisterUrlUseCase>();
         service.AddScoped<IRedirectUseCase, RedirectUseCase>();
         service.AddScoped<IJwtTokenUseCase, JwtTokenUseCase>();
+        service.AddScoped<ICloudflareClient, CloudflareClientUseCase>();
     }
 }

@@ -5,7 +5,8 @@ using Warply.Domain;
 using Warply.Domain.Entities;
 using Warply.Domain.Enum;
 using Warply.Domain.Repositories.Users;
-using Warply.Exception.BaseExceptions;
+using Warply.Domain.Services.Utils;
+using Warply.Exception.Exceptions;
 using Warply.Infrastructure.Security;
 
 namespace Warply.Application.UseCases.Register.Users;
@@ -14,7 +15,8 @@ internal class RegisterUserUseCase(
     IUsersRepository repository,
     IUnityOfWork unityOfWork,
     IPasswordHasher passwordHasher,
-    ITokenService tokenService) : IRegisterUserUseCase
+    ITokenService tokenService,
+    ICloudflareClient cloudflareClient) : IRegisterUserUseCase
 {
     public async Task<ResponseRegisterUserJson> ExecuteAsync(RequestRegisterUserJson request)
     {

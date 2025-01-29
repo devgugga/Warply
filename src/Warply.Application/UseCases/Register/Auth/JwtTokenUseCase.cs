@@ -4,7 +4,7 @@ using Warply.Communication.Response.Auth;
 using Warply.Domain;
 using Warply.Domain.Entities;
 using Warply.Domain.Repositories.Users;
-using Warply.Exception.BaseExceptions;
+using Warply.Exception.Exceptions;
 using Warply.Infrastructure.Security;
 
 namespace Warply.Application.UseCases.Register.Auth;
