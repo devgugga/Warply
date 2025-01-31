@@ -16,7 +16,8 @@ internal class JwtTokenService(IConfiguration configuration) : ITokenService
         var claims = new[]
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim("PlanType", user.PlanType.ToString())
+            new Claim("PlanType", user.PlanType.ToString()),
+            new Claim("Email", user.Email)
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));

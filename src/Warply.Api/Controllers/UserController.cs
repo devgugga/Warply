@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Warply.Application.UseCases.Recive.User;
 using Warply.Application.UseCases.Register.User;
 using Warply.Application.UseCases.Update.User;
 using Warply.Communication.Request.User;
@@ -18,6 +19,17 @@ public class UserController : ControllerBase
         var response = await useCase.ExecuteAsync(request);
 
         return Created(string.Empty, response);
+    }
+
+    [HttpGet]
+    [Authorize]
+    public async Task<IActionResult> GetUser([FromServices] IReciveUserUseCase useCase)
+    {
+        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+        var response = await useCase.ExecuteAsync(userId);
+
+        return Ok(response);
     }
 
     [HttpPut("update")]

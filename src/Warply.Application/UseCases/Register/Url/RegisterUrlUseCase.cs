@@ -2,21 +2,27 @@ using Warply.Communication.Request.Url;
 using Warply.Communication.Response.Url;
 using Warply.Domain;
 using Warply.Domain.Repositories.Url;
+using Warply.Domain.Repositories.Users;
 using Warply.Exception.Exceptions;
 
 namespace Warply.Application.UseCases.Register.Url;
 
-internal class RegisterUrlUseCase(IUrlRepository repository, IUnityOfWork unityOfWork) : IRegisterUrlUseCase
+internal class RegisterUrlUseCase(IUrlRepository repository, IUnityOfWork unityOfWork, IUsersRepository usersRepository)
+    : IRegisterUrlUseCase
 {
     public async Task<ResponseRegisterUrlJson> ExecuteAsync(RequestRegisterUrlJson request, Guid userId)
     {
         ValidateRequest(request);
 
+        var user = await VerifyUserAsync(userId);
+
         var shortCode = await GenerateShortCode();
+
+        user.Links += 1;
 
         var entity = new Domain.Entities.Url
         {
-            UserId = userId,
+            UserId = user.Id,
             ShortCode = shortCode,
             OriginalUrl = request.OriginalUrl,
             ShortedUrl = $"https://warply.io/{shortCode}"
@@ -46,6 +52,16 @@ internal class RegisterUrlUseCase(IUrlRepository repository, IUnityOfWork unityO
         var errorMessages = result.Errors.Select(x => x.ErrorMessage).ToList();
 
         throw new ErrorOnValidationException(errorMessages);
+    }
+
+    private async Task<Domain.Entities.User> VerifyUserAsync(Guid userId)
+    {
+        var user = await usersRepository.GetByIdAsync(userId);
+
+        if (user is null)
+            throw new NotFoundException("No user found with the specified id.");
+
+        return user;
     }
 
     private async Task<string> GenerateShortCode(int maxAttempts = 5, int codeLength = 6)
