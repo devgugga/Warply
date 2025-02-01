@@ -9,9 +9,12 @@ namespace Warply.Application.UseCases.Redirect.Url;
 internal class RedirectUseCase(IUrlRepository repository, IUnityOfWork unityOfWork, HttpClient httpClient)
     : IRedirectUseCase
 {
-    public async Task<ResponseRedirectUrlJson> Redirect(string shortCode, string ip = "179.189.0.157")
+    public async Task<ResponseRedirectUrlJson> Redirect(string shortCode, string ip)
     {
         var url = await VerifyShortCode(shortCode);
+
+        if (url.UrlStatus is not 0)
+            throw new InvalidException("This shorted url is no longer avaliable.");
 
         var originalUrl = url.OriginalUrl;
 
@@ -53,8 +56,7 @@ internal class RedirectUseCase(IUrlRepository repository, IUnityOfWork unityOfWo
         }
         catch (System.Exception ex)
         {
-            Console.WriteLine(ex);
-            throw;
+            throw new System.Exception(ex.Message);
         }
     }
 }

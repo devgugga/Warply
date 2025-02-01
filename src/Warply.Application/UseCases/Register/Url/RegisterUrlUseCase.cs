@@ -1,6 +1,7 @@
 using Warply.Communication.Request.Url;
 using Warply.Communication.Response.Url;
 using Warply.Domain;
+using Warply.Domain.Enum;
 using Warply.Domain.Repositories.Url;
 using Warply.Domain.Repositories.Users;
 using Warply.Exception.Exceptions;
@@ -25,7 +26,8 @@ internal class RegisterUrlUseCase(IUrlRepository repository, IUnityOfWork unityO
             UserId = user.Id,
             ShortCode = shortCode,
             OriginalUrl = request.OriginalUrl,
-            ShortedUrl = $"https://warply.io/{shortCode}"
+            ShortedUrl = $"https://warply.io/{shortCode}",
+            UrlStatus = UrlStatus.Active
         };
 
         await repository.Add(entity);

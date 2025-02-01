@@ -4,5 +4,5 @@ namespace Warply.Application.UseCases.Redirect.Url;
 
 public interface IRedirectUseCase
 {
-    public Task<ResponseRedirectUrlJson> Redirect(string shortCode, string ip = "179.189.0.157");
+    public Task<ResponseRedirectUrlJson> Redirect(string shortCode, string ip);
 }
